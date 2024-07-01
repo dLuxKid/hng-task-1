@@ -64,7 +64,7 @@ Deploy the server to any free hosting platform (e.g., Heroku, Vercel, etc.). Mak
 Make a GET request to the following endpoint:
 
 ```
-http://<example.com>/api/hello?visitor_name=Mark
+hng-task-1-production.up.railway.app/api/hello?visitor_name=Mark
 ```
 
 ### Example Response
