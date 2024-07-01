@@ -50,7 +50,7 @@ app.get("/api/hello", async (req: Request, res: Response) => {
 });
 
 app.use("*", (req: Request, res: Response) =>
-  res.json("Route not found").status(404)
+  res.status(404).json(`Can't find ${req.originalUrl} on this server`)
 );
 
 app.listen(8090, () => {
