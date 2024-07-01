@@ -16,7 +16,7 @@ app.get("/", (req: Request, res: Response) => {
 app.get("/api/hello", async (req: Request, res: Response) => {
   try {
     const { visitor_name } = req.query;
-    if (!visitor_name) res.sendStatus(404);
+    const name = visitor_name || "Anonymous";
 
     const { ipAddress } = await (
       await fetch("https://api.db-ip.com/v2/free/self")
@@ -37,7 +37,7 @@ app.get("/api/hello", async (req: Request, res: Response) => {
     res.status(200).json({
       client_ip: ipAddress,
       location: geoResponse,
-      greeting: `Hello ${visitor_name}, the temperature is ${temp} degrees Celcius in ${geoResponse}`,
+      greeting: `Hello ${name}, the temperature is ${temp} degrees Celcius in ${geoResponse}`,
     });
   } catch (error) {
     console.log(error);
