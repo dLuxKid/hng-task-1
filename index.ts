@@ -10,7 +10,11 @@ dotenv.config({ path: "./config.env" });
 app.set("trust proxy", true);
 
 app.get("/", (req: Request, res: Response) => {
-  res.status(200).send("Hello world");
+  res
+    .status(200)
+    .send(
+      "Hello welcome, click <a href='api/hello?visitor_name=Marvellous'>here</a> to test the server"
+    );
 });
 
 app.get("/api/hello", async (req: Request, res: Response) => {
@@ -49,6 +53,6 @@ app.get("/api/hello", async (req: Request, res: Response) => {
   }
 });
 
-app.listen(8080, () => {
+app.listen(8090, () => {
   console.log("hello from server side");
 });
