@@ -4,6 +4,7 @@ import express, {
   type Response,
 } from "express";
 import dotenv from "dotenv";
+import requestIp from "request-ip";
 
 const app: Application = express();
 dotenv.config({ path: "./config.env" });
@@ -18,26 +19,31 @@ app.get("/api/hello", async (req: Request, res: Response) => {
     const { visitor_name } = req.query;
     const name = visitor_name || "Anonymous";
 
-    const { ipAddress } = await (
-      await fetch("https://api.db-ip.com/v2/free/self")
-    ).json();
+    const clientIp = requestIp.getClientIp(req);
+    console.log(clientIp, req.socket.remoteAddress, req.ip);
 
-    const geoResponse = await (
-      await fetch(`https://ipapi.co/${ipAddress}/city`)
-    ).text();
+    // const { ipAddress } = await (
+    //   await fetch("https://api.db-ip.com/v2/free/self")
+    // ).json();
 
-    const temperature = await (
+    // const geoResponse = await (
+    //   await fetch(`https://ipapi.co/${ipAddress}/city`)
+    // ).text();
+
+    const data = await (
       await fetch(
-        `http://api.weatherapi.com/v1/current.json?key=${process.env.weatherapikey}&q=${ipAddress}`
+        `http://api.weatherapi.com/v1/current.json?key=${process.env.weatherapikey}&q=${clientIp}`
       )
     ).json();
 
-    const temp = temperature.current.temp_c;
+    console.log(data);
+
+    const temp = data.current.temp_c;
 
     res.status(200).json({
-      client_ip: ipAddress,
-      location: geoResponse,
-      greeting: `Hello ${name}, the temperature is ${temp} degrees Celcius in ${geoResponse}`,
+      client_ip: clientIp,
+      location: data.location.name,
+      greeting: `Hello ${name}, the temperature is ${temp} degrees Celcius in ${data.location.name}`,
     });
   } catch (error) {
     console.log(error);
