@@ -20,30 +20,25 @@ app.get("/api/hello", async (req: Request, res: Response) => {
     const name = visitor_name || "Anonymous";
 
     const clientIp = requestIp.getClientIp(req);
-    console.log(clientIp, req.socket.remoteAddress, req.ip);
 
-    // const { ipAddress } = await (
-    //   await fetch("https://api.db-ip.com/v2/free/self")
-    // ).json();
+    const geoResponse = await (
+      await fetch(`https://ipapi.co/${clientIp}/city`)
+    ).text();
 
-    // const geoResponse = await (
-    //   await fetch(`https://ipapi.co/${ipAddress}/city`)
-    // ).text();
+    console.log(geoResponse);
 
     const data = await (
       await fetch(
-        `http://api.weatherapi.com/v1/current.json?key=${process.env.weatherapikey}&q=${clientIp}`
+        `http://api.weatherapi.com/v1/current.json?key=${process.env.weatherapikey}&q=${geoResponse}`
       )
     ).json();
-
-    console.log(data);
 
     const temp = data.current.temp_c;
 
     res.status(200).json({
       client_ip: clientIp,
-      location: data.location.name,
-      greeting: `Hello ${name}, the temperature is ${temp} degrees Celcius in ${data.location.name}`,
+      location: geoResponse,
+      greeting: `Hello ${name}, the temperature is ${temp} degrees Celcius in ${geoResponse}`,
     });
   } catch (error) {
     console.log(error);
