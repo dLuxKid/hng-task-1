@@ -1,4 +1,4 @@
-# HNG 11 TASK 1 
+# HNG 11 TASK 1
 
 This project sets up a basic web server using Node.js and Express. The server provides an API endpoint that returns the client's IP address, geographical location, and a personalized greeting message. The server is deployed on a free hosting platform.
 
@@ -13,9 +13,11 @@ This project sets up a basic web server using Node.js and Express. The server pr
 ### [GET] `/api/hello`
 
 #### Query Parameters
+
 - `visitor_name` (string): The name of the visitor.
 
 #### Response
+
 ```json
 {
   "client_ip": "127.0.0.1", // The IP address of the requester
@@ -33,27 +35,31 @@ This project sets up a basic web server using Node.js and Express. The server pr
 ### Installation
 
 1. Clone the repository:
+
    ```sh
    git clone <repository-url>
    cd <repository-directory>
    ```
 
 2. Install dependencies:
+
    ```sh
    bun install
    ```
 
 3. Create a `.env` file in the root of the project and add your environment variables:
+
    ```
    WEATHER_API_KEY=your_weather_api_key
    ```
 
 4. Start the server:
+
    ```sh
    bun run start
    ```
 
-5. The server will be running at `http://localhost:8080`.
+5. The server will be running at `http://localhost:4000`.
 
 ## Deployment
 
@@ -64,7 +70,7 @@ Deploy the server to any free hosting platform (e.g., Heroku, Vercel, etc.). Mak
 Make a GET request to the following endpoint:
 
 ```
-hng-task-1-production.up.railway.app/api/hello?visitor_name=Mark
+https://60phjmn7-4000.euw.devtunnels.ms/api/hello?visitor_name=Mark
 ```
 
 ### Example Response

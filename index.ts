@@ -53,6 +53,6 @@ app.use("*", (req: Request, res: Response) =>
   res.status(404).json(`Can't find ${req.originalUrl} on this server`)
 );
 
-app.listen(8090, () => {
+app.listen(4000, () => {
   console.log("hello from server side");
 });
