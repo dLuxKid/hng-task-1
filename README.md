@@ -70,7 +70,7 @@ Deploy the server to any free hosting platform (e.g., Heroku, Vercel, etc.). Mak
 Make a GET request to the following endpoint:
 
 ```
-https://60phjmn7-4000.euw.devtunnels.ms/api/hello?visitor_name=Mark
+https://hng-task-1-production.up.railway.app/api/hello?visitor_name=Mark
 ```
 
 ### Example Response
@@ -90,6 +90,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## Acknowledgements
 
 - [Express](https://expressjs.com/)
-- [DB-IP](https://db-ip.com/)
 - [IPAPI](https://ipapi.co/)
 - [Weather API](https://www.weatherapi.com/)
